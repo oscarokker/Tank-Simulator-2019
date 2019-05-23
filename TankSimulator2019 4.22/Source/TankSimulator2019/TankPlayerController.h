@@ -13,7 +13,7 @@ class TANKSIMULATOR2019_API ATankPlayerController : public APlayerController
 {
 	GENERATED_BODY()
 
-public:
+private:
 	virtual void BeginPlay() override;
 
 	virtual void Tick(float DeltaTime) override;
@@ -25,4 +25,12 @@ public:
 
 	// Return an OUT parameter that is true if landscape is hit
 	bool GetSightRayHitLocation(FVector& OutHitLocation) const;
+
+	UPROPERTY(EditAnywhere)
+	float CrossHairXLocation = 0.5;
+
+	UPROPERTY(EditAnywhere)
+	float CrossHairYLocation = 0.5;
+
+	bool GetLookDirection(FVector2D ScreenLocation, FVector& LookDirection) const;
 };
