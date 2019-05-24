@@ -33,6 +33,10 @@ void ATankAIController::Tick(float DeltaTime)
 
 		// fire if ready
 	}
+	else
+	{
+		return;
+	}
 }
 
 
