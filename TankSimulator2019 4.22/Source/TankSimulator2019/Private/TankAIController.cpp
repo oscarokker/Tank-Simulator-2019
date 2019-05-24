@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
+#include "TankAIController.h" // Must be first to include
 #include "TankSimulator2019.h"
-#include "TankAIController.h"
 
 
 void ATankAIController::BeginPlay()
@@ -20,6 +20,22 @@ void ATankAIController::BeginPlay()
 }
 
 
+// Called every frame
+void ATankAIController::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+	if (GetPlayerTank())
+	{
+		// TODO Move toward player
+
+		// Aim toward the player
+		GetControlledTank()->AimAt(GetPlayerTank()->GetActorLocation());
+
+		// fire if ready
+	}
+}
+
+
 ATank* ATankAIController::GetControlledTank() const
 {
 	return Cast<ATank>(GetPawn());
@@ -29,7 +45,7 @@ ATank* ATankAIController::GetControlledTank() const
 ATank* ATankAIController::GetPlayerTank() const
 {
 	auto PlayerPawn = GetWorld()->GetFirstPlayerController()->GetPawn();
-	if (PlayerPawn) // Note the !
+	if (PlayerPawn)
 	{
 		return Cast<ATank>(PlayerPawn);
 	}

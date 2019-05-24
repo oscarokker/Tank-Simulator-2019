@@ -27,25 +27,26 @@ void ATankPlayerController::Tick(float DeltaTime)
 }
 
 
-ATank* ATankPlayerController::GetControlledTank() const
-{
-	return Cast<ATank>(GetPawn());
-}
-
-
 void ATankPlayerController::AimTowardCrosshair()
 {
-	if (!GetControlledTank())
+	if (GetControlledTank())
+	{
+		FVector HitLocation;
+		if (GetSightRayHitLocation(HitLocation))
+		{
+			GetControlledTank()->AimAt(HitLocation);
+		}
+	}
+	else
 	{
 		return;
 	}
+}
 
-	FVector HitLocation;
-	if (GetSightRayHitLocation(HitLocation))
-	{
-		UE_LOG(LogTemp, Warning, TEXT("Look direction: %s"), *HitLocation.ToString());
-		// TODO Tell controlled tank to aim at this point
-	}
+
+ATank* ATankPlayerController::GetControlledTank() const
+{
+	return Cast<ATank>(GetPawn());
 }
 
 
