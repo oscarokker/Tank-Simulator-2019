@@ -6,9 +6,7 @@
 #include "GameFramework/GameModeBase.h"
 #include "TankSimulator2019GameModeBase.generated.h"
 
-/**
- * 
- */
+
 UCLASS()
 class TANKSIMULATOR2019_API ATankSimulator2019GameModeBase : public AGameModeBase
 {

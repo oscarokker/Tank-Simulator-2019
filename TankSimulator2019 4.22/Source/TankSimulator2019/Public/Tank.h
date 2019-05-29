@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "TankAimingComponent.h"
 #include "GameFramework/Pawn.h"
-#include "Tank.generated.h" // Must be included last
+#include "Tank.generated.h" // Must be last to include
 
 
 UCLASS()
@@ -20,17 +20,17 @@ public:
 	void SetBarrelReference(UStaticMeshComponent* BarrelToSet);
 
 protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
 	UTankAimingComponent* TankAimingComponent = nullptr;
 
 private:
 	// Sets default values for this pawn's properties
 	ATank();
 
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+
 	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+	virtual void Tick(float DeltaSecounds) override;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;

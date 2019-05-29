@@ -4,23 +4,22 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
-#include "TankAimingComponent.generated.h"
+#include "TankAimingComponent.generated.h" // Must be last to include
 
 
-UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
 class TANKSIMULATOR2019_API UTankAimingComponent : public UActorComponent
 {
 	GENERATED_BODY()
-
-protected:
-	// Called when the game starts
-	virtual void BeginPlay() override;
 
 public:
 	// Sets default values for this component's properties
 	UTankAimingComponent();
 
 	void SetBarrelReference(UStaticMeshComponent* BarrelToSet);
+
+	// Called when the game starts
+	virtual void BeginPlay() override;
 
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
