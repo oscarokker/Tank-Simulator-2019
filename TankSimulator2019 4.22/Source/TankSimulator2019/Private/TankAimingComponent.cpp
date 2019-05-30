@@ -1,7 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "TankAimingComponent.h" // Must be first to include
-#include "TankPlayerController.h"
+#include "TankBarrel.h"
+#include "TankSimulator2019.h"
 #include "Kismet\GameplayStatics.h"
 
 
@@ -12,7 +13,7 @@ UTankAimingComponent::UTankAimingComponent()
 }
 
 
-void UTankAimingComponent::SetBarrelReference(UStaticMeshComponent* BarrelToSet)
+void UTankAimingComponent::SetBarrelReference(UTankBarrel* BarrelToSet)
 {
 	Barrel = BarrelToSet;
 }
@@ -40,8 +41,7 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 	if (bHaveAimSolution)
 	{
 		auto AimDirection = OutLaunchVelocity.GetSafeNormal();
-		UE_LOG(LogTemp, Warning, TEXT("Aiming at %s"), *AimDirection.ToString());
-		MoveBarrelTowards(HitLocation);
+		MoveBarrelTowards(AimDirection);
 	}
 }
 
@@ -52,11 +52,5 @@ void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
 	auto AimAsRotator = AimDirection.Rotation();
 	auto DeltaRotator = AimAsRotator - BarrelRotator;
 
-	UE_LOG(LogTemp, Warning, TEXT("AimAsRotator: %s"), AimAsRotator.ToString());
-
-	// Convert float to degrees
-	// Get tower component
-		// Rotate tower component
-	// Get barrel component
-		// rotate barrel component
+	Barrel->Elevate(5); // TODO Remove magic number
 }
