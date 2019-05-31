@@ -9,7 +9,8 @@
 // Sets default values for this component's properties
 UTankAimingComponent::UTankAimingComponent()
 {
-	PrimaryComponentTick.bCanEverTick = true;
+	bWantsBeginPlay = true;
+	PrimaryComponentTick.bCanEverTick = true; // TODO Should this tick?
 }
 
 
@@ -42,6 +43,14 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 	{
 		auto AimDirection = OutLaunchVelocity.GetSafeNormal();
 		MoveBarrelTowards(AimDirection);
+
+		auto Time = GetWorld()->GetTimeSeconds();
+		UE_LOG(LogTemp, Warning, TEXT("%f: Aim solution found!"), Time);
+	}
+	else
+	{
+		auto Time = GetWorld()->GetTimeSeconds();
+		UE_LOG(LogTemp, Warning, TEXT("%f: No aim solution found!"), Time);
 	}
 }
 

@@ -4,13 +4,10 @@
 #include "TankSimulator2019.h"
 
 
-void UTankBarrel::Elevate(float DegreesPerSecond)
+void UTankBarrel::Elevate(float RelativeSpeed)
 {
-	UE_LOG(LogTemp, Warning, TEXT("BarrelElevate() called at speed %s"), DegreesPerSecond);
 
-	// Convert float to degrees
-	// Get tower component
-		// Rotate tower component
-	// Get barrel component
-		// rotate barrel component
+
+	// Move the barrel by the right emount per frame
+	// Give a max elevation speed and frame time
 }
