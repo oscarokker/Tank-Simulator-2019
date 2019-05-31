@@ -3,9 +3,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Tank.h"
 #include "AIController.h"
 #include "TankAIController.generated.h" // Must be last to include
+
+// Forward declarations
+class ATank;
 
 
 UCLASS()

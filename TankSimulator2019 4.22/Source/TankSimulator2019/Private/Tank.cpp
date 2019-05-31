@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "Tank.h" // Must be first to include
+#include "TankAimingComponent.h"
 #include "TankSimulator2019.h"
 
 
