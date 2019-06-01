@@ -38,5 +38,6 @@ void ATank::SetupPlayerInputComponent(class UInputComponent* InputComponent)
 
 void ATank::AimAt(FVector HitLocation)
 {
+	//UE_LOG(LogTemp, Warning, TEXT("AimAt in Tank.ccp runs"));
 	TankAimingComponent->AimAt(HitLocation, LaunchSpeed);
 }
