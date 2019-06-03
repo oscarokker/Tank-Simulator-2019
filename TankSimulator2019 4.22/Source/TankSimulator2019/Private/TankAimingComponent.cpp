@@ -11,7 +11,7 @@
 UTankAimingComponent::UTankAimingComponent()
 {
 	bWantsBeginPlay = true;
-	PrimaryComponentTick.bCanEverTick = true; // TODO Should this tick?
+	PrimaryComponentTick.bCanEverTick = false;
 }
 
 
@@ -43,8 +43,6 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 	{
 		return;
 	}
-
-	//UE_LOG(LogTemp, Warning, TEXT("Barrel not found yet!"));
 
 	FVector OutLaunchVelocity;
 	FVector StartLocation = Barrel->GetSocketLocation(FName("Projectile"));
@@ -84,4 +82,5 @@ void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
 	auto DeltaRotator = AimAsRotator - BarrelRotator;
 
 	Barrel->Elevate(DeltaRotator.Pitch);
+	Turret->Rotate(DeltaRotator.Yaw);
 }

@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/StaticMeshComponent.h"
-#include "TankTurret.generated.h"
+#include "TankTurret.generated.h" // Must be last to include
 
 
 UCLASS(meta = (BlueprintSpawnableComponent), hidecategories = ("Collision"))
@@ -18,5 +18,5 @@ public:
 
 private:
 	UPROPERTY(EditAnywhere, Category = Setup)
-	float MaxDegreesPerSecond = 12;
+	float MaxDegreesPerSecond = 30;
 };
