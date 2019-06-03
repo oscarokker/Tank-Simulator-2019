@@ -2,6 +2,7 @@
 
 #include "TankAimingComponent.h" // Must be first to include
 #include "TankBarrel.h"
+#include "TankTurret.h"
 #include "TankSimulator2019.h"
 #include "Kismet\GameplayStatics.h"
 
@@ -16,7 +17,23 @@ UTankAimingComponent::UTankAimingComponent()
 
 void UTankAimingComponent::SetBarrelReference(UTankBarrel* BarrelToSet)
 {
+	if (!BarrelToSet)
+	{
+		return;
+	}
+
 	Barrel = BarrelToSet;
+}
+
+
+void UTankAimingComponent::SetTurretReference(UTankTurret* TurretToSet)
+{
+	if (!TurretToSet)
+	{
+		return;
+	}
+
+	Turret = TurretToSet;
 }
 
 
