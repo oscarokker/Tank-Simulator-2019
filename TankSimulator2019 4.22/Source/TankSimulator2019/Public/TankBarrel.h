@@ -7,7 +7,7 @@
 #include "TankBarrel.generated.h" // Must be last to include
 
 
-UCLASS(meta = (BlueprintSpawnableComponent), hidecategories = ("Collision"))
+UCLASS(meta = (BlueprintSpawnableComponent))
 class TANKSIMULATOR2019_API UTankBarrel : public UStaticMeshComponent
 {
 	GENERATED_BODY()
