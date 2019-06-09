@@ -43,11 +43,15 @@ private:
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 
 	UPROPERTY(EditAnywhere, Category = Firing)
-	float LaunchSpeed = 8000;
+	float LaunchSpeed = 6000;
 
 	UPROPERTY(EditAnywhere, Category = Setup)
 	TSubclassOf<AProjectile> ProjectileBlueprint;
 
 	// Local barrel reference for spawning projectiles
 	UTankBarrel* Barrel = nullptr;
+
+	float ReloadTimeInSecounds = 3;
+
+	double LastFireTime = 0;
 };
