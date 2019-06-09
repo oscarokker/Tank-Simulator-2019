@@ -40,9 +40,6 @@ void ATank::AimAt(FVector HitLocation)
 
 void ATank::Fire()
 {
-	auto Time = GetWorld()->GetTimeSeconds();
-	UE_LOG(LogTemp, Warning, TEXT("%f: Tank firing!"), Time);
-
 	if (!Barrel)
 	{
 		return;
@@ -51,11 +48,9 @@ void ATank::Fire()
 	// Spawn a projectile at the socket location of the barrel
 	auto SocketLocation = Barrel->GetSocketLocation(FName("Projectile"));
 	auto SocketRotation = Barrel->GetSocketRotation(FName("Projectile"));
-	GetWorld()->SpawnActor<AProjectile>(
-		ProjectileBlueprint,
-		SocketLocation,
-		SocketRotation
-	);
+	auto Projectile = GetWorld()->SpawnActor<AProjectile>(ProjectileBlueprint, SocketLocation, SocketRotation);
+
+	Projectile->LaunchProjectile(LaunchSpeed);
 }
 
 
