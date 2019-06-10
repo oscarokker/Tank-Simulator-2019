@@ -11,5 +11,4 @@ UCLASS()
 class TANKSIMULATOR2019_API UUProjectileMovementComponent : public UProjectileMovementComponent
 {
 	GENERATED_BODY()
-	
 };
