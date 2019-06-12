@@ -18,4 +18,8 @@ class TANKSIMULATOR2019_API UTankTrack : public UStaticMeshComponent
 public:
 	UFUNCTION(BlueprintCallable, Category = Input)
 	void SetThrottle(float Throttle);
+
+	// Max force per tracks in newtons
+	UPROPERTY(EditDefaultsOnly)
+	float TrackMaxDrivingForce = 250000; // Assume a 25 ton tank with 1g acceleration
 };
