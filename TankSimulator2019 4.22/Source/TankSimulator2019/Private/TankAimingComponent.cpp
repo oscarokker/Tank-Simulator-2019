@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// Written by Oscar Rode
 
 #include "TankAimingComponent.h" // Must be first to include
 #include "TankBarrel.h"

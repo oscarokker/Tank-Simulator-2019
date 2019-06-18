@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// Written by Oscar Rode
 
 #include "TankTurret.h" // Must be first to include
 #include "TankSimulator2019.h"
