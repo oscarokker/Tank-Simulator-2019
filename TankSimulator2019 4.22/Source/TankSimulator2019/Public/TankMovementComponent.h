@@ -6,11 +6,12 @@
 #include "GameFramework/NavMovementComponent.h"
 #include "TankMovementComponent.generated.h" // Must be last to include
 
+
+// Forward Declarations
 class UTankTrack;
 
-
 /**
- * Responsible from driving the tank tracks
+ * Responsible for driving the tank tracks
  */
 UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
 class TANKSIMULATOR2019_API UTankMovementComponent : public UNavMovementComponent
@@ -19,7 +20,7 @@ class TANKSIMULATOR2019_API UTankMovementComponent : public UNavMovementComponen
 	
 public:
 	UFUNCTION(BlueprintCallable, Category = "Setup")
-	void Initialise(UTankTrack* LeftTrackToSet, UTankTrack* RightTrackToSet);
+	void Initialize(UTankTrack* LeftTrackToSet, UTankTrack* RightTrackToSet);
 
 	UFUNCTION(BlueprintCallable, Category = "Input")
 	void IntendMoveForward(float Throw);
