@@ -6,10 +6,14 @@
 #include "GameFramework/PlayerController.h"
 #include "TankPlayerController.generated.h" // Must be last to include
 
+
 // Forward declarations
 class ATank;
+class UTankAimingComponent;
 
-
+/**
+ * Responsible helping the player to aim
+ */
 UCLASS()
 class TANKSIMULATOR2019_API ATankPlayerController : public APlayerController
 {
@@ -18,6 +22,9 @@ class TANKSIMULATOR2019_API ATankPlayerController : public APlayerController
 protected:
 	UFUNCTION(BlueprintCallable, Category = "Setup")
 	ATank* GetControlledTank() const;
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "Setup")
+	void FoundAimingComponent(UTankAimingComponent* AimCompRef);
 
 private:
 	virtual void BeginPlay() override;

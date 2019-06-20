@@ -1,6 +1,7 @@
 // Written by Oscar Rode
 
 #include "TankPlayerController.h" // Must be first to include
+#include "TankAimingComponent.h"
 #include "Tank.h"
 #include "TankSimulator2019.h"
 
@@ -8,6 +9,16 @@
 void ATankPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
+	
+	auto AimingComponent = GetControlledTank()->FindComponentByClass<UTankAimingComponent>();
+	if (AimingComponent)
+	{
+		FoundAimingComponent(AimingComponent);
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Player controller can't find aiming component at Begin Play"))
+	}
 }
 
 
@@ -19,26 +30,21 @@ void ATankPlayerController::Tick(float DeltaTime)
 }
 
 
-void ATankPlayerController::AimTowardCrosshair()
-{
-	if (GetControlledTank())
-	{
-		FVector HitLocation;
-		if (GetSightRayHitLocation(HitLocation))
-		{
-			GetControlledTank()->ATank::AimAt(HitLocation);
-		}
-	}
-	else
-	{
-		return;
-	}
-}
-
-
 ATank* ATankPlayerController::GetControlledTank() const
 {
 	return Cast<ATank>(GetPawn());
+}
+
+
+void ATankPlayerController::AimTowardCrosshair()
+{
+	if (!GetControlledTank()) {return;}
+
+	FVector HitLocation; // Out parameter
+	if (GetSightRayHitLocation(HitLocation)) // Does a line trace
+	{
+		GetControlledTank()->AimAt(HitLocation);
+	}
 }
 
 
