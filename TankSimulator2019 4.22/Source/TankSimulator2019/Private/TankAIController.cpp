@@ -4,7 +4,7 @@
 #include "Tank.h"
 #include "TankSimulator2019.h"
 
-
+ 
 void ATankAIController::BeginPlay()
 {
 	Super::BeginPlay();
@@ -19,17 +19,14 @@ void ATankAIController::Tick(float DeltaTime)
 	auto PlayerTank = Cast<ATank>(GetWorld()->GetFirstPlayerController()->GetPawn());
 	auto ControlledTank = Cast<ATank>(GetPawn());
 
-	if (PlayerTank)
+	if (ensure(PlayerTank))
 	{
 		// Move toward the player
-		MoveToActor(
-			PlayerTank,
-			AcceptanceRadius
-		); // TODO Check if radius is in cm
+		MoveToActor(PlayerTank, AcceptanceRadius); // TODO Check if radius is in cm
 
 		// Aim toward the player
 		ControlledTank->AimAt(PlayerTank->GetActorLocation());
 
-		ControlledTank->Fire(); // TODO Limit fire rate
+		ControlledTank->Fire();
 	}
 }
