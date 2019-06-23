@@ -1,11 +1,10 @@
 // Written by Oscar Rode
 
 #include "Tank.h" // Must be first to include
+#include "TankSimulator2019.h"
 #include "TankAimingComponent.h"
-#include "TankMovementComponent.h"
 #include "TankBarrel.h"
 #include "Projectile.h"
-#include "TankSimulator2019.h"
 
 
 // Sets default values
@@ -31,6 +30,7 @@ void ATank::BeginPlay()
 void ATank::AimAt(FVector HitLocation)
 {
 	if (!ensure(TankAimingComponent)) {return;}
+
 	TankAimingComponent->AimAt(HitLocation, LaunchSpeed);
 }
 

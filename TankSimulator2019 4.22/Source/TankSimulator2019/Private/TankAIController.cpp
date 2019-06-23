@@ -1,8 +1,9 @@
 // Written by Oscar Rode
 
 #include "TankAIController.h" // Must be first to include
-#include "Tank.h"
 #include "TankSimulator2019.h"
+#include "Tank.h"
+//Depends on movement component via pathfinding system
 
  
 void ATankAIController::BeginPlay()

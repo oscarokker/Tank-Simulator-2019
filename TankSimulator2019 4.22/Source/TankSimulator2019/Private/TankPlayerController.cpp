@@ -1,9 +1,9 @@
 // Written by Oscar Rode
 
 #include "TankPlayerController.h" // Must be first to include
+#include "TankSimulator2019.h"
 #include "TankAimingComponent.h"
 #include "Tank.h"
-#include "TankSimulator2019.h"
 
 
 void ATankPlayerController::BeginPlay()

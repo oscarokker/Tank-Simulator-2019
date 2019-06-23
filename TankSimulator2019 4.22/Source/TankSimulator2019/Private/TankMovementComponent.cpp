@@ -1,8 +1,8 @@
 // Written by Oscar Rode
 
 #include "TankMovementComponent.h" // Must be first to include
-#include "TankTrack.h"
 #include "TankSimulator2019.h"
+#include "TankTrack.h"
 
 
 void UTankMovementComponent::Initialize(UTankTrack* LeftTrackToSet, UTankTrack* RightTrackToSet)

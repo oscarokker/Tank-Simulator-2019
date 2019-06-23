@@ -1,9 +1,9 @@
 // Written by Oscar Rode
 
 #include "TankAimingComponent.h" // Must be first to include
+#include "TankSimulator2019.h"
 #include "TankBarrel.h"
 #include "TankTurret.h"
-#include "TankSimulator2019.h"
 #include "Kismet\GameplayStatics.h"
 
 
