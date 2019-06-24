@@ -2,7 +2,6 @@
 
 #include "Tank.h" // Must be first to include
 #include "TankSimulator2019.h"
-#include "TankAimingComponent.h"
 #include "TankBarrel.h"
 #include "Projectile.h"
 
@@ -17,17 +16,7 @@ ATank::ATank()
 
 void ATank::BeginPlay()
 {
-	Super::BeginPlay(); // Needed for BP to BeginPlay to run
-
-	TankAimingComponent = FindComponentByClass<UTankAimingComponent>();
-}
-
-
-void ATank::AimAt(FVector HitLocation)
-{
-	if (!ensure(TankAimingComponent)) {return;}
-
-	TankAimingComponent->AimAt(HitLocation, LaunchSpeed);
+	Super::BeginPlay(); // Needed for BeginPlay in BP to run
 }
 
 

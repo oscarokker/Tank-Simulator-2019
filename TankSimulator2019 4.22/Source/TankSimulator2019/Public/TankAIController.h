@@ -6,9 +6,6 @@
 #include "AIController.h"
 #include "TankAIController.generated.h" // Must be last to include
 
-// Forward declarations
-class ATank;
-
 
 UCLASS()
 class TANKSIMULATOR2019_API ATankAIController : public AAIController
