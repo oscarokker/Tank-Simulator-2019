@@ -12,7 +12,25 @@
 UTankAimingComponent::UTankAimingComponent()
 {
 	bWantsBeginPlay = true;
-	PrimaryComponentTick.bCanEverTick = false;
+	PrimaryComponentTick.bCanEverTick = true;
+}
+
+
+void UTankAimingComponent::BeginPlay()
+{
+	// Make first fire after initial reload
+	LastFireTime = FPlatformTime::Seconds();
+}
+
+
+void UTankAimingComponent::TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
+{
+	if ((FPlatformTime::Seconds() - LastFireTime) > ReloadTimeInSecounds)
+	{
+		FiringState = EFiringState::Reloading;
+	}
+
+	// TODO Handle aiming and locked states
 }
 
 
@@ -66,11 +84,11 @@ void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
 
 void UTankAimingComponent::Fire()
 {
-	if (!ensure(Barrel && ProjectileBlueprint)) {return;} // TODO Fix ensure log
-
-	bool isReloaded = (FPlatformTime::Seconds() - LastFireTime) > ReloadTimeInSecounds;
-	if (isReloaded)
+	if (FiringState != EFiringState::Reloading)
 	{
+		if (!ensure(Barrel)) { return; }
+		if (!ensure(ProjectileBlueprint)) { return; }
+
 		// Spawn a projectile at the socket location of the barrel
 		auto SocketLocation = Barrel->GetSocketLocation(FName("Projectile"));
 		auto SocketRotation = Barrel->GetSocketRotation(FName("Projectile"));
