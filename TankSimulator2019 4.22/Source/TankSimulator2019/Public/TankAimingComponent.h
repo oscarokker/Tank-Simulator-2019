@@ -20,6 +20,7 @@ enum class EFiringState : uint8
 // Forward Declarations
 class UTankBarrel;
 class UTankTurret;
+class AProjectile;
 
 /**
  * Responsible for aiming the tank barrel
@@ -35,6 +36,9 @@ public:
 
 	void AimAt(FVector HitLocation);
 
+	UFUNCTION(BlueprintCallable, Category = "Firing")
+	void Fire();
+
 protected:
 	UPROPERTY(BlueprintReadOnly, Category = "State")
 	EFiringState FiringState = EFiringState::Reloading;
@@ -43,11 +47,19 @@ private:
 	// Sets default values for this component's properties
 	UTankAimingComponent();
 
+	void MoveBarrelTowards(FVector AimDirection);
+
 	UTankBarrel* Barrel = nullptr;
 	UTankTurret* Turret = nullptr;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Firing")
 	float LaunchSpeed = 6000;
 
-	void MoveBarrelTowards(FVector AimDirection);
+	UPROPERTY(EditDefaultsOnly, Category = "Setup")
+	TSubclassOf<AProjectile> ProjectileBlueprint;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Firing")
+	float ReloadTimeInSecounds = 2.5;
+
+	double LastFireTime = 0;
 };

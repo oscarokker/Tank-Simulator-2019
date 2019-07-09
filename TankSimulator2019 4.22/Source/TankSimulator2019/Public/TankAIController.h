@@ -7,6 +7,9 @@
 #include "TankAIController.generated.h" // Must be last to include
 
 
+/**
+ * Controller component of Tank AI
+ */
 UCLASS()
 class TANKSIMULATOR2019_API ATankAIController : public AAIController
 {
