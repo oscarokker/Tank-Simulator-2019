@@ -6,6 +6,11 @@
 #include "Components/ActorComponent.h"
 #include "TankAimingComponent.generated.h" // Must be last to include
 
+// Forward Declarations
+class UTankBarrel;
+class UTankTurret;
+class AProjectile;
+
 
 // Enum for aiming states
 UENUM()
@@ -16,11 +21,6 @@ enum class EFiringState : uint8
 	Locked
 };
 
-
-// Forward Declarations
-class UTankBarrel;
-class UTankTurret;
-class AProjectile;
 
 /**
  * Responsible for aiming the tank barrel
@@ -61,8 +61,8 @@ private:
 	UPROPERTY(EditDefaultsOnly, Category = "Firing")
 	float LaunchSpeed = 6000;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Setup")
-	TSubclassOf<AProjectile> ProjectileBlueprint;
+	UPROPERTY(EditDefaultsOnly, Category = "Projectile")
+		TSubclassOf<AProjectile> ProjectileBlueprint;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Firing")
 	float ReloadTimeInSecounds = 2.5;
