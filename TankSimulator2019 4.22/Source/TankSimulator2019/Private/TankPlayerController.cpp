@@ -24,10 +24,9 @@ void ATankPlayerController::Tick(float DeltaTime)
 void ATankPlayerController::AimTowardCrosshair()
 {
 	if (!GetPawn()) {return;} // When player is not possessing tank
-
 	auto AimingComponent = GetPawn()->FindComponentByClass<UTankAimingComponent>();
-	if (!ensure(AimingComponent)) { return; }
 
+	if (!ensure(AimingComponent)) {return;}
 	FVector HitLocation; // Out parameter
 	if (GetSightRayHitLocation(HitLocation)) // Does a line trace
 	{
@@ -49,10 +48,10 @@ bool ATankPlayerController::GetSightRayHitLocation(FVector& HitLocation) const
 	if (GetLookDirection(ScreenLocation, LookDirection))
 	{
 		// Line-trace along that look direction to see what is hit
-		GetLookVectorHitLocation(LookDirection, HitLocation);
+		return GetLookVectorHitLocation(LookDirection, HitLocation);
 	}
-	
-	return true;
+
+	return false;
 }
 
 
