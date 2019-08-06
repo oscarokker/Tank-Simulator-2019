@@ -4,8 +4,7 @@
 #include "TankSimulator2019.h"
 
 
-// Sets default values
-ATank::ATank()
+ATank::ATank() // Constructor
 {
  	// Set this pawn to call Tick() every frame. You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;

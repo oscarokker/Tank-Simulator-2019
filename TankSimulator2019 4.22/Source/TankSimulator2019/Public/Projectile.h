@@ -7,6 +7,7 @@
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Components/StaticMeshComponent.h"
 #include "Particles/ParticleSystemComponent.h"
+#include "PhysicsEngine/RadialForceComponent.h"
 #include "Projectile.generated.h" // Must be last to include
 
 
@@ -16,13 +17,12 @@ class TANKSIMULATOR2019_API AProjectile : public AActor
 	GENERATED_BODY()
 	
 public:	
-	// Sets default values for this actor's properties
-	AProjectile();
-
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
+	AProjectile(); // Constructor
 
 	void LaunchProjectile(float Speed);
+
+protected:
+	virtual void BeginPlay() override;
 
 private:
 	UFUNCTION()
@@ -38,4 +38,7 @@ private:
 
 	UPROPERTY(VisibleAnywhere, Category = "Components")
 	UParticleSystemComponent* ImpactBlast = nullptr;
+
+	UPROPERTY(VisibleAnywhere, Category = "Components")
+	URadialForceComponent* ExplosionForce = nullptr;
 };
