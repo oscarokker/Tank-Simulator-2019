@@ -71,10 +71,10 @@ private:
 	float LaunchSpeed = 8000;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Firing")
-	float ReloadTimeInSecounds = 2.5;
+	float ReloadTimeInSecounds = 2;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Firing")
-	int32 RoundsLeft = 3;
+	int32 RoundsLeft = 20;
 
 	double LastFireTime = 0;
 
