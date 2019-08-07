@@ -4,6 +4,12 @@
 #include "TankSimulator2019.h"
 
 
+float ATank::GetHealthPercent() const
+{
+	return (float)CurrentHealth / (float)StartingHealth;
+}
+
+
 ATank::ATank() // Constructor
 {
 	PrimaryActorTick.bCanEverTick = false;
