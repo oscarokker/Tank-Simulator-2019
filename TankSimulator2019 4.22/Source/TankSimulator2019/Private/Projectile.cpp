@@ -1,6 +1,7 @@
 // Written by Oscar Rode
 
 #include "Projectile.h" // Must be first to include
+#include "Kismet/GameplayStatics.h"
 #include "TankSimulator2019.h"
 
 
@@ -47,5 +48,13 @@ void AProjectile::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, U
 	LaunchBlast->Deactivate();
 	ImpactBlast->Activate();
 	ExplosionForce->FireImpulse();
+	UGameplayStatics::ApplyRadialDamage(
+		this,
+		ProjectileDamage,
+		GetActorLocation(),
+		ExplosionForce->Radius, // for consistancy
+		UDamageType::StaticClass(),
+		TArray<AActor*>() // damage all actors
+	);
 	CollisionMesh->DestroyComponent();
 }
