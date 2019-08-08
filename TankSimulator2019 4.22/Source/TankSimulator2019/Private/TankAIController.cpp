@@ -4,6 +4,7 @@
 #include "TankSimulator2019.h"
 #include "TankAimingComponent.h"
 #include "Tank.h"
+#include "GameFramework/Pawn.h"
 
  
 void ATankAIController::BeginPlay()
@@ -29,7 +30,8 @@ void ATankAIController::SetPawn(APawn* InPawn)
 
 void ATankAIController::OnPossedTankDeath()
 {
-	UE_LOG(LogTemp, Warning, TEXT("Received!! :D"))
+	if (!ensure(GetPawn())) { return; } // TODO remove if okay
+	GetPawn()->DetachFromControllerPendingDestroy();
 }
 
 

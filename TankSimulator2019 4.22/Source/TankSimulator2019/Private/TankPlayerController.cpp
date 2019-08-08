@@ -3,14 +3,37 @@
 #include "TankPlayerController.h" // Must be first to include
 #include "TankSimulator2019.h"
 #include "TankAimingComponent.h"
+#include "Tank.h"
+#include "GameFramework/Pawn.h"
 
 
 void ATankPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
 	auto AimingComponent = GetPawn()->FindComponentByClass<UTankAimingComponent>();
-	if (!ensure(AimingComponent)) {return;}
+	if (!ensure(AimingComponent)) { return; }
 	FoundAimingComponent(AimingComponent);
+}
+
+
+void ATankPlayerController::SetPawn(APawn* InPawn)
+{
+	Super::SetPawn(InPawn);
+
+	if (InPawn)
+	{
+		auto PossessedTank = Cast<ATank>(InPawn);
+		if (!ensure(PossessedTank)) { return; }
+
+		// Subscribe local method to the tank
+		PossessedTank->OnDeath.AddUniqueDynamic(this, &ATankPlayerController::OnPossedTankDeath);
+	}
+}
+
+
+void ATankPlayerController::OnPossedTankDeath()
+{
+	StartSpectatingOnly();
 }
 
 
@@ -23,10 +46,9 @@ void ATankPlayerController::Tick(float DeltaTime)
 
 void ATankPlayerController::AimTowardCrosshair()
 {
-	if (!GetPawn()) {return;} // When player is not possessing tank
+	if (!GetPawn()) { return; } // When player is not possessing tank
 	auto AimingComponent = GetPawn()->FindComponentByClass<UTankAimingComponent>();
-
-	if (!ensure(AimingComponent)) {return;}
+	if (!ensure(AimingComponent)) { return; }
 	FVector HitLocation; // Out parameter
 	if (GetSightRayHitLocation(HitLocation)) // Does a line trace
 	{
