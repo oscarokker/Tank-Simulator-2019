@@ -7,6 +7,7 @@
 #include "Tank.generated.h" // Must be last to include
 
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FTankDelegate);
 UCLASS()
 class TANKSIMULATOR2019_API ATank : public APawn
 {
@@ -19,6 +20,8 @@ public:
 	// Return current health as a percentage between 0 and 1
 	UFUNCTION(BlueprintPure, Category = "Health")
 	float GetHealthPercent() const;
+
+	FTankDelegate OnDeath;
 
 private:
 	ATank(); // Constructor

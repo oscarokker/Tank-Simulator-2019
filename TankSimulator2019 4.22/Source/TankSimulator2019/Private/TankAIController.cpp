@@ -3,11 +3,33 @@
 #include "TankAIController.h" // Must be first to include
 #include "TankSimulator2019.h"
 #include "TankAimingComponent.h"
+#include "Tank.h"
 
  
 void ATankAIController::BeginPlay()
 {
 	Super::BeginPlay();
+}
+
+
+void ATankAIController::SetPawn(APawn* InPawn)
+{
+	Super::SetPawn(InPawn);
+
+	if (InPawn)
+	{
+		auto PossessedTank = Cast<ATank>(InPawn);
+		if (!ensure(PossessedTank)) { return; }
+
+		// Subscribe local method to the tank
+		PossessedTank->OnDeath.AddUniqueDynamic(this, &ATankAIController::OnPossedTankDeath);
+	}
+}
+
+
+void ATankAIController::OnPossedTankDeath()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Received!! :D"))
 }
 
 

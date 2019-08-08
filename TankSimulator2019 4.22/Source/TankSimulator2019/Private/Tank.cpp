@@ -4,15 +4,15 @@
 #include "TankSimulator2019.h"
 
 
-float ATank::GetHealthPercent() const
-{
-	return (float)CurrentHealth / (float)StartingHealth;
-}
-
-
 ATank::ATank() // Constructor
 {
 	PrimaryActorTick.bCanEverTick = false;
+}
+
+
+float ATank::GetHealthPercent() const
+{
+	return (float)CurrentHealth / (float)StartingHealth;
 }
 
 
@@ -22,7 +22,10 @@ float ATank::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEve
 	int32 DamageToApply = FMath::Clamp(DamagePoints, 0, CurrentHealth);
 
 	CurrentHealth -= DamageToApply;
-	UE_LOG(LogTemp, Warning, TEXT("DamagePoints = %i, DamageToApply = %i"), DamagePoints, DamageToApply)
+	if (CurrentHealth <= 0)
+	{
+		OnDeath.Broadcast();
+	}
 
 	return DamageToApply;
 }
