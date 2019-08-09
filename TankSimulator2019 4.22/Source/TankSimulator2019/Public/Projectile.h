@@ -29,7 +29,7 @@ private:
 	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
 
 	UPROPERTY(EditDefaultsOnly, Category = "Setup")
-	float ProjectileDamage = 20.f;
+	float ProjectileDamage = 1.f;
 
 	UProjectileMovementComponent* ProjectileMovement = nullptr;
 
