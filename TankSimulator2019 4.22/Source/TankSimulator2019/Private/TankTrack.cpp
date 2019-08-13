@@ -4,10 +4,9 @@
 #include "TankSimulator2019.h"
 
 
-UTankTrack::UTankTrack()
+UTankTrack::UTankTrack() // Constructor
 {
 	PrimaryComponentTick.bCanEverTick = false;
-	
 	SetNotifyRigidBodyCollision(true);
 }
 
@@ -15,7 +14,6 @@ UTankTrack::UTankTrack()
 void UTankTrack::BeginPlay()
 {
 	Super::BeginPlay();
-
 	OnComponentHit.AddDynamic(this, &UTankTrack::OnHit);
 }
 

@@ -31,7 +31,6 @@ AProjectile::AProjectile() // Constructor
 void AProjectile::BeginPlay()
 {
 	Super::BeginPlay();
-
 	CollisionMesh->OnComponentHit.AddDynamic(this, &AProjectile::OnHit);
 }
 

@@ -11,7 +11,6 @@ class UTankBarrel;
 class UTankTurret;
 class AProjectile;
 
-
 // Enum for aiming states
 UENUM()
 enum class EFiringState : uint8
@@ -21,7 +20,6 @@ enum class EFiringState : uint8
 	Locked,
 	OutOfAmmo
 };
-
 
 /**
  * Responsible for aiming the tank barrel
