@@ -1,6 +1,7 @@
 // Written by Oscar Rode
 
 #include "SpawnPoint.h"
+#include "Kismet/GameplayStatics.h"
 #include "TankSimulator2019.h"
 
 
@@ -15,9 +16,10 @@ void USpawnPoint::BeginPlay()
 {
 	Super::BeginPlay();
 
-	auto NewActor = GetWorld()->SpawnActor<AActor>(SpawnClass);
-	if (!NewActor) {return;}
-	NewActor->AttachToComponent(this, FAttachmentTransformRules::KeepRelativeTransform);
+	auto NewActor = GetWorld()->SpawnActorDeferred<AActor>(SpawnClass, GetComponentTransform());
+	if (!NewActor) { return; }
+	NewActor->AttachToComponent(this, FAttachmentTransformRules::KeepWorldTransform);
+	UGameplayStatics::FinishSpawningActor(NewActor, GetComponentTransform());
 }
 
 
