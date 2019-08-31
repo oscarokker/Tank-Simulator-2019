@@ -21,6 +21,7 @@ enum class EFiringState : uint8
 	OutOfAmmo
 };
 
+
 /**
  * Responsible for aiming the tank barrel
  */

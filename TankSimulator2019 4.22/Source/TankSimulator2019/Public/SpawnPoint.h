@@ -4,7 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "Components/SceneComponent.h"
-#include "SpawnPoint.generated.h"
+#include ""
+#include "SpawnPoint.generated.h" // Must be last to include
 
 
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
@@ -15,15 +16,16 @@ class TANKSIMULATOR2019_API USpawnPoint : public USceneComponent
 public:	
 	USpawnPoint(); // Constructor
 
-protected:
-	virtual void BeginPlay() override;
-
-public:	
 	virtual void TickComponent(
 		float DeltaTime,
 		ELevelTick TickType,
 		FActorComponentTickFunction* ThisTickFunction
 	) override;
+
+	TArray<class ASprungWheel*> GetWheels() const;
+
+protected:
+	virtual void BeginPlay() override;
 
 private:
 	// Config

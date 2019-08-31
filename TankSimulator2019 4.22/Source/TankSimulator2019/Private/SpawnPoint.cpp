@@ -1,6 +1,7 @@
 // Written by Oscar Rode
 
 #include "SpawnPoint.h"
+#include "TankTrack.h"
 #include "Kismet/GameplayStatics.h"
 #include "TankSimulator2019.h"
 
@@ -27,4 +28,10 @@ void USpawnPoint::BeginPlay()
 void USpawnPoint::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+}
+
+
+TArray<class ASprungWheel*> USpawnPoint::GetWheels() const
+{
+	TankTrack.GetWheels()
 }

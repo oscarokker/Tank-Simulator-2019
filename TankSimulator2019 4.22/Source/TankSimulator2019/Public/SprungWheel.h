@@ -18,6 +18,8 @@ public:
 
 	virtual void Tick(float DeltaTime) override;
 
+	void AddDrivingForce(float ForceMagnitude);
+
 protected:
 	virtual void BeginPlay() override;
 
