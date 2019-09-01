@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "Components/SceneComponent.h"
-#include ""
 #include "SpawnPoint.generated.h" // Must be last to include
 
 
@@ -22,7 +21,7 @@ public:
 		FActorComponentTickFunction* ThisTickFunction
 	) override;
 
-	TArray<class ASprungWheel*> GetWheels() const;
+	AActor* GetSpawnedActor() const { return SpawnedActor; }
 
 protected:
 	virtual void BeginPlay() override;
@@ -31,4 +30,7 @@ private:
 	// Config
 	UPROPERTY(EditDefaultsOnly, Category = "Setup")
 	TSubclassOf<AActor> SpawnClass;
+
+	UPROPERTY()
+	AActor* SpawnedActor;
 };

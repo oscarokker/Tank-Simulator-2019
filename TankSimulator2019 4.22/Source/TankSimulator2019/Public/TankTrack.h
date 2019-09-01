@@ -23,10 +23,10 @@ public:
 	UPROPERTY(EditDefaultsOnly)
 	float TrackMaxDrivingForce = 40000000; // Assume a 40 ton tank with a little over 1g acceleration
 
-	TArray<class ASprungWheel*> GetWheels() const;
-
 private:
-	UTankTrack();
+	UTankTrack(); // Constructor
+
+	TArray<class ASprungWheel*> GetWheels() const;
 
 	void DriveTrack(float CurrentThrottle);
 };

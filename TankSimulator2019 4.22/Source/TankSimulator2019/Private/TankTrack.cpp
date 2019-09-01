@@ -2,13 +2,14 @@
 
 #include "TankTrack.h" // Must be first to include
 #include "SprungWheel.h"
+#include "SpawnPoint.h"
 #include "TankSimulator2019.h"
 
 
 UTankTrack::UTankTrack() // Constructor
 {
 	PrimaryComponentTick.bCanEverTick = false;
-	SetNotifyRigidBodyCollision(true);
+	//SetNotifyRigidBodyCollision(true);
 }
 
 
@@ -30,8 +31,21 @@ void UTankTrack::DriveTrack(float CurrentThrottle)
 	}
 }
 
-
-TArray<class ASprungWheel*> UTankTrack::GetWheels() const
+TArray<ASprungWheel*> UTankTrack::GetWheels() const
 {
-	USceneComponent::GetChildrenComponents(true, );
+	TArray<ASprungWheel*> ResultArray;
+	TArray<USceneComponent*> Children;
+	GetChildrenComponents(true, Children);
+	for (USceneComponent* Child : Children)
+	{
+		auto SpawnPointChild = Cast<USpawnPoint>(Child);
+		if (!SpawnPointChild) continue;
+
+		AActor* SpawnedChild = SpawnPointChild->GetSpawnedActor();
+		auto SprungWheel = Cast<ASprungWheel>(SpawnedChild);
+		if (!SprungWheel) continue;
+
+		ResultArray.Add(SprungWheel);
+	}
+	return ResultArray;
 }
